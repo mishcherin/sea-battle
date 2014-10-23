@@ -74,17 +74,31 @@ gulp.task('test', function() {
 
 gulp.task('connect', function () {
     var connect = require('connect');
+
     var app = connect()
         .use(require('connect-livereload')({ port: 35729 }))
         .use(connect.static('app'))
         .use(connect.static('.tmp'))
         .use(connect.directory('app'));
 
-    require('http').createServer(app)
-        .listen(9000)
+    var server = require('http').createServer(app)
         .on('listening', function () {
             console.log('Started connect web server on http://localhost:9000');
         });
+
+    var io = require('socket.io')(server);
+
+    io.on('connection', function(socket){
+        console.log('a user connected');
+
+        socket.on('disconnect', function(){
+            console.log('user disconnected');
+        });
+    });
+
+    server.listen(9000, function() {
+        console.log('listening on *:9000');
+    })
 });
 
 gulp.task('serve', ['connect'], function () {
@@ -103,7 +117,7 @@ gulp.task('wiredep', function () {
 });
 
 gulp.task('watch', ['connect', 'serve'], function () {
-    var server = $.livereload();
+//    var server = $.livereload();
 
     // watch for changes
 

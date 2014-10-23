@@ -16,7 +16,7 @@
         <!-- build:css styles/main.css -->
         <link rel="stylesheet" href="styles/main.css">
         <!-- endbuild -->
-
+        <script data-main="scripts/main" src="scripts/require.js"></script>
         <!-- build:js scripts/vendor.js -->
         <!-- bower:js -->
         <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -90,7 +90,8 @@
 
             <div class="container text-center">
                 <div class="lead">
-                    <a class="btn btn-lg btn-success" href="#">Ready!</a>
+                    <a class="btn btn-lg btn-success" href="#" style="display: none;">Ready!</a>
+                    <span class="txt">Waiting for another player...</span>
                 </div>
             </div>
 

@@ -1,1 +1,3 @@
-console.log('\'Allo \'Allo!');
+require(['/socket.io/socket.io.js'], function(io) {
+
+});
